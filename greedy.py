@@ -29,10 +29,10 @@ def greedy(m):
 
     while not frontier.empty():
 
-        # cell = frontier.get()[2]  # get next cell in queue
-        next = frontier.get()
-        cell = next[2]
-        searchPath.append(cell)  # add to search path
+        cell = frontier.get()[2]     # get next cell in queue
+        searchPath.append(cell)      # add to search path
+        print(cell)
+        print(len(searchPath))
 
         if cell == (1, 1):  # if cell is goal, break
             break
@@ -61,4 +61,4 @@ def greedy(m):
         fwdPath[aPath[cell]] = cell
         cell = aPath[cell]
 
-    return searchPath, aPath, fwdPath
+    return searchPath, fwdPath

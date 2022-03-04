@@ -61,4 +61,4 @@ def astar(m):
         fwdPath[aPath[cell]] = cell
         cell = aPath[cell]
 
-    return searchPath, aPath, fwdPath
+    return searchPath, fwdPath

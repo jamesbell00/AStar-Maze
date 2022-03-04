@@ -5,8 +5,8 @@ from greedy import greedy
 m = maze(8,8)
 
 m.CreateMaze()
-searchPath, aPath, fwdPath = astar(m)
-gSearchPath, gPath, gFwdPath = greedy(m)
+searchPath, fwdPath = astar(m)
+gSearchPath, gFwdPath = greedy(m)
 
 a = agent(m, footprints=True, color=COLOR.blue, filled=True)
 c = agent(m, footprints=True, color=COLOR.red, shape='square')
