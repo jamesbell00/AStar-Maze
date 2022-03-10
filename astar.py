@@ -2,7 +2,7 @@ from queue import PriorityQueue
 
 
 # heuristic function (manhattan distance)
-def h(cell1, cell2):
+def heuristic(cell1, cell2):
     (x1, y1) = cell1
     (x2, y2) = cell2
 
@@ -19,10 +19,10 @@ def astar(m):
 
     # initializing max values for fn and heuristic for initial node
     fn = {cell: float('inf') for cell in m.grid}
-    fn[initial] = h(initial, (1, 1))
+    fn[initial] = heuristic(initial, (1, 1))
 
     frontier = PriorityQueue()
-    frontier.put((h(initial, (1, 1)), h(initial, (1, 1)), initial))
+    frontier.put((heuristic(initial, (1, 1)), heuristic(initial, (1, 1)), initial))
 
     fwdPath = {}  # forward path ( a reverse of the backwards path)
     aPath = {}  # backwards path from goal to initial
@@ -47,13 +47,13 @@ def astar(m):
                     nextCell = (cell[0] + 1, cell[1])
 
                 tmp_gn = gn[cell] + 1  # add 1 to real cost
-                tmp_fn = tmp_gn + h(nextCell, (1, 1))  # adds real cost to heuristic of next cell
+                tmp_fn = tmp_gn + heuristic(nextCell, (1, 1))  # adds real cost to heuristic of next cell
 
                 if tmp_fn < fn[nextCell]:  # if new calculated cost less than prev calculated cost, update next cell
                     aPath[nextCell] = cell
                     gn[nextCell] = tmp_gn
                     fn[nextCell] = tmp_fn
-                    frontier.put((tmp_fn, h(nextCell, (1, 1)), nextCell))
+                    frontier.put((tmp_fn, heuristic(nextCell, (1, 1)), nextCell))
 
     cell = (1, 1)  # goal cell
     # path creation
